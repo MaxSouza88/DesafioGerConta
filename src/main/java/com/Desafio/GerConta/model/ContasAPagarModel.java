@@ -20,7 +20,6 @@ import java.time.LocalDateTime;
 
 public class ContasAPagarModel {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -31,24 +30,16 @@ public class ContasAPagarModel {
     @Column(name = "valor", length = 10, nullable = false)
     private double valor;
 
-    @Column(length = 10, nullable = false)
-    @Enumerated (value = EnumType.STRING)
+    @Enumerated(value = EnumType.STRING)
     private TipoEnum tipoConta;
 
-    @Column(name = "data_vencimento",length = 15,nullable = false)
+    @Column(name = "data_vencimento", nullable = false)
     private LocalDate dataDeVencimento;
 
-    @Column(name = "data_pagamento",length = 15)
+    @Column(name = "data_pagamento")
     private LocalDateTime dataDePagamento;
 
-    @Column
-    @Enumerated (value = EnumType.STRING)
+    @Enumerated(value = EnumType.STRING)
     private StatusEnum status;
-
-
-
-
-
-
 
 }

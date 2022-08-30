@@ -9,10 +9,10 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ContasAPagarRepository extends JpaRepository<ContasAPagarModel, Long> {
+public interface ContasPagarRepository extends JpaRepository<ContasAPagarModel, Long> {
 
-    public List<ContasAPagarModel> findByTipoConta (TipoEnum tipoConta);
+   List<ContasAPagarModel> findByTipoConta(TipoEnum tipoConta);
 
-   public List<ContasAPagarModel> findByStatusConta(StatusEnum status);
+   List<ContasAPagarModel> findByStatus(StatusEnum status);
 
 }
