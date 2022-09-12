@@ -1,6 +1,5 @@
 package com.Desafio.GerConta.controller;
 
-import com.Desafio.GerConta.model.ContasAPagarModel;
 import com.Desafio.GerConta.model.UsuarioModel;
 import com.Desafio.GerConta.repository.UsuarioRepository;
 import com.Desafio.GerConta.service.UsuarioService;

@@ -1,9 +1,7 @@
 package com.Desafio.GerConta.service;
 
 import com.Desafio.GerConta.model.EnderecoModel;
-import com.Desafio.GerConta.model.UsuarioModel;
 import com.Desafio.GerConta.repository.EnderecoRepository;
-import com.Desafio.GerConta.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
