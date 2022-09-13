@@ -20,4 +20,8 @@ public class CidadeModel {
 
     @Column(name = "cidade", nullable = false)
     private String nomeCidade;
+
+    @ManyToOne
+    @JoinColumn(name = "nomeEstado",referencedColumnName = "id")
+    private EstadoModel estado ;
 }

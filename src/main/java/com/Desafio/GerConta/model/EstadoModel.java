@@ -1,10 +1,13 @@
 package com.Desafio.GerConta.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -23,6 +26,10 @@ public class EstadoModel {
 
     @Column(name = "nome_estado", nullable = false)
     private String nomeEstado;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "estado",cascade = CascadeType.ALL)
+    private List<CidadeModel> cidadeModel = new ArrayList<>();
 
 
 }
