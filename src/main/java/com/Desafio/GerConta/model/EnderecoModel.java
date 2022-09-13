@@ -31,7 +31,7 @@ public class EnderecoModel {
     private String pontoReferencia;
 
     @ManyToOne
-    @JoinColumn(name = "cliente_id",referencedColumnName = "id")
+    @JoinColumn(name = "usuario_id",referencedColumnName = "id")
     private UsuarioModel usuario;
 
 }

@@ -43,4 +43,8 @@ public class ContasReceberModel {
     @Enumerated(value = EnumType.STRING)
     private StatusEnum status;
 
+    @ManyToOne
+    @JoinColumn(name = "usuario_id",referencedColumnName = "id")
+    private UsuarioModel usuario;
+
 }
