@@ -3,10 +3,11 @@ package com.Desafio.GerConta.service;
 import com.Desafio.GerConta.model.EnderecoModel;
 import com.Desafio.GerConta.repository.EnderecoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
+@Service
 public class EnderecoService {
 
     @Autowired

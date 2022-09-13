@@ -21,26 +21,26 @@ public class EstadoController {
         return estadoService.buscarEstado();
     }
 
-    @GetMapping(path = "/enderecos/{id}")
+    @GetMapping(path = "/estados/{id}")
     public Optional<EstadoModel> buscaEstadoId(@PathVariable Long id){
 
         return estadoService.buscarEstadoId(id);
     }
 
-    @PostMapping(path = "/enderecos")
+    @PostMapping(path = "/estados")
     @ResponseStatus(HttpStatus.CREATED)
     public EstadoModel cadastraEstado (@RequestBody EstadoModel estadoModel){
 
         return estadoService.cadastraEstado(estadoModel);
     }
 
-    @PutMapping(path = "enderecos/{id}")
+    @PutMapping(path = "estados/{id}")
     public EstadoModel alteraEstado(@ RequestBody EstadoModel estadoModel){
 
         return estadoService.alteraCadEstado(estadoModel);
     }
 
-    @DeleteMapping(path = "enderecos/{id}")
+    @DeleteMapping(path = "estados/{id}")
     public void deletaEstado(@PathVariable Long id){
 
         estadoService.deletaEstado(id);
