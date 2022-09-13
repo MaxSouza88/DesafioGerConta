@@ -9,37 +9,38 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/enderecos")
 public class EnderecoController {
 
     @Autowired
     private EnderecoService enderecoService;
 
-    @GetMapping(path = "/enderecos")
+    @GetMapping
     public Iterable<EnderecoModel> buscaTudo(){
 
         return enderecoService.buscarEnderecos();
     }
 
-    @GetMapping(path = "/enderecos/{id}")
+    @GetMapping(path = "/{id}")
     public Optional<EnderecoModel> buscaEndId(@PathVariable Long id){
 
         return enderecoService.buscarEndId(id);
     }
 
-    @PostMapping(path = "/enderecos")
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public EnderecoModel cadastraEndereco (@RequestBody EnderecoModel enderecoModel){
 
         return enderecoService.cadastraEndereco(enderecoModel);
     }
 
-    @PutMapping(path = "enderecos/{id}")
+    @PutMapping(path = "/{id}")
     public EnderecoModel alteraEndereco(@ RequestBody EnderecoModel enderecoModel){
 
         return enderecoService.alteraCadEndereco(enderecoModel);
     }
 
-    @DeleteMapping(path = "enderecos/{id}")
+    @DeleteMapping(path = "/{id}")
     public void deletaEndereco(@PathVariable Long id){
 
         enderecoService.deletaEndereco(id);

@@ -8,6 +8,7 @@ import org.hibernate.validator.constraints.br.CPF;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
@@ -26,7 +27,7 @@ public class UsuarioModel {
     private String nomeUsuario;
 
     @Column(name = "data_nascimento", nullable = false)
-    private Date dataNascimento;
+    private LocalDate dataNascimento;
 
     @Column(name = "email")
     @Email(message = "Email inválido !")
@@ -36,7 +37,7 @@ public class UsuarioModel {
     @Column(name = "cpf")
     @CPF(message = "CPF informado, está inválido !")
     @NotBlank(message = "CPF não informado ")
-    private String CPF;
+    private String cpf;
 
 
 

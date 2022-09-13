@@ -7,7 +7,7 @@ public class StatusController {
 
         @GetMapping(path = "/status")
         public String checar(){
-            return "Banco Conectado !!!";
+            return " Teste de Banco Conectado !!!";
         }
 
     }

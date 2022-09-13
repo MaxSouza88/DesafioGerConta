@@ -10,37 +10,38 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/estados")
 public class EstadoController {
 
     @Autowired
     private EstadoService estadoService;
 
-    @GetMapping(path = "/estados")
+    @GetMapping
     public Iterable<EstadoModel> buscaTudo(){
 
         return estadoService.buscarEstado();
     }
 
-    @GetMapping(path = "/estados/{id}")
+    @GetMapping(path = "/{id}")
     public Optional<EstadoModel> buscaEstadoId(@PathVariable Long id){
 
         return estadoService.buscarEstadoId(id);
     }
 
-    @PostMapping(path = "/estados")
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public EstadoModel cadastraEstado (@RequestBody EstadoModel estadoModel){
 
         return estadoService.cadastraEstado(estadoModel);
     }
 
-    @PutMapping(path = "estados/{id}")
+    @PutMapping(path = "/{id}")
     public EstadoModel alteraEstado(@ RequestBody EstadoModel estadoModel){
 
         return estadoService.alteraCadEstado(estadoModel);
     }
 
-    @DeleteMapping(path = "estados/{id}")
+    @DeleteMapping(path = "/{id}")
     public void deletaEstado(@PathVariable Long id){
 
         estadoService.deletaEstado(id);

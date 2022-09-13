@@ -32,16 +32,15 @@ public class UsuarioController {
     }
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<UsuarioModel> cadastraUsuario(@RequestBody UsuarioModel usuarioModel){
-        UsuarioModel contas = usuarioService.cadastraUsuario(usuarioModel);
-        return new ResponseEntity<>(contas, HttpStatus.CREATED);
+
+        return ResponseEntity.ok(usuarioService.cadastraUsuario(usuarioModel));
     }
 
     @PatchMapping(path = "/{id}")
-    public ResponseEntity<UsuarioModel> alterarConta(@PathVariable Long id,@RequestBody UsuarioModel usuarioModel){
-        if (!usuarioRepository.existsById(id)) {
-            return ResponseEntity.notFound().build();
-        }
+    public ResponseEntity<UsuarioModel> alteraUsuario(@RequestBody UsuarioModel usuarioModel){
+
         return ResponseEntity.ok(usuarioService.alteraCadUsuario(usuarioModel));
     }
 

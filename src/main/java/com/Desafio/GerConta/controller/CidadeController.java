@@ -9,37 +9,38 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/cidades")
 public class CidadeController {
 
     @Autowired
     CidadeService cidadeService;
 
-    @GetMapping(path = "/cidades")
+    @GetMapping
     public Iterable<CidadeModel> buscaTudo(){
 
         return cidadeService.buscarCidade();
     }
 
-    @GetMapping(path = "/cidades/{id}")
+    @GetMapping(path = "/{id}")
     public Optional<CidadeModel> buscaId(@PathVariable Long id){
 
         return cidadeService.buscarCidadeId(id);
     }
 
-    @PostMapping(path = "/cidades")
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public CidadeModel cadastraCidade (@RequestBody CidadeModel cidadeModel){
 
         return cidadeService.cadastraCidade(cidadeModel);
     }
 
-    @PutMapping(path = "cidades/{codigo}")
+    @PutMapping(path = "/{id}")
     public CidadeModel alteraCidade(@ RequestBody CidadeModel cidadeModel){
 
         return cidadeService.alteraCadCidade(cidadeModel);
     }
 
-    @DeleteMapping(path = "cidades/{id}")
+    @DeleteMapping(path = "/{id}")
     public void deletaCidade(@PathVariable Long id){
 
         cidadeService.deletaCidade(id);
