@@ -32,7 +32,7 @@ public class ContasReceberModel {
     private BigDecimal valorRecebido;
 
     @Enumerated(value = EnumType.STRING)
-    private TipoRecebimento tipoRecebido;
+    private TipoRecebimento tipoRecebimento;
 
     @Column(name = "data_vencimento", nullable = false)
     private LocalDate dataDeVencimento;
