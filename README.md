@@ -100,3 +100,80 @@ Verbo HTTP: DELETE
 Resposta Status 204
 
 IMPORTANTE: Entrega máxima válida APENAS se a média estiver perfeita.
+
+Continuação - parte 2.
+Não mude os nomes dos atributos e classes - é essencial para a correção.
+Se seu contas ContasAPagar ou Enums tiverem outros nomes diferentes coloque os da documentação.
+Crie as classes relacionamentos e os CRUDS.
+
+Todos os foreign deverão ter o final _id ex: Classe Avião terá o passageiro_id. Primary key terão o nome de código.
+
+Crie uma classe Usuario:
+nomeUsuario: String
+dataNascimento: Date
+email - String -validation
+CPF - String - validation
+Depois da validação se precisar para teste número de cpf use o site https://www.4devs.com.br/gerador_de_cpf
+
+
+Crie uma classe Endereco:
+logradouro: String
+Bairro: String
+cep: String
+pontoReferencia: String
+
+Crie uma classe Cidade:
+nomeCidade: String
+
+Crie uma classe Estado:
+uf: String
+nomeEstado: String
+
+Nosso Usuario tem seu contasReceber;
+
+ContasReceber:
+Status String, recebimento String, valorRecebido BigDecimal, tipoRecebido ENUM, dataDeVencimento Date, dataDeRecebimento Date, usuario_id.
+
+
+{
+"id": 1,
+"recebimento": "ALUGUEL CASA 1",
+"valorRecebimento": 970.00,
+"TipoRebimento": "ALUGUEIS",
+"dataDeVencimento": "2022-09-11",
+"dataDeRecebimento": “2021-11-10 10:00:00”,
+"status": "PAGO",
+“usuarios_id”: “1”
+}
+
+Enun TipoRecebimento: “ALUGUEIS, EMPREGO_CLT, FREELANCER"
+Enun RecebimentoAlugueis: “EM_ATRASO, EM_DIA”, ADIANTADO”.
+Entrega Mínima:
+Patterns Factory.
+Quando for recebimento de aluguéis.
+Os aluguéis em contratos tem os seguintes critérios - em atraso multa de 3,5%, em dia sem desconto e adiantado 5% de desconto.
+
+Entrega MÉDIA
+
+O sistema realiza todas as validações de campos obrigatórios para cadastrar uma conta. São eles; nomeUsuario, VALORDERECEBIMENTO, TIPORECEBIMENTO e Data de Vencimento.
+Pesquisa por todos os “usuários” não mostra cpf.
+O sistema responderá de forma coerente todos os erros de validação como por exemplo 422 para erros causados por validação ou 404 quando usuário tentar atualizar uma conta que não existe.
+
+Para isso será necessário o controller advice.
+
+O sistema também permitirá visualizar uma TipoRecebimento específica com todos os detalhes.
+Entrega Maxima.
+
+O sistema deve permitir que sejam feitos alguns filtros na lista de contas.
+
+1 - filtro de contas por status -contasReceber
+2 - filtro de contas por TIPORECEBIMENTO - contasReceber
+3 -Data de vencimento a partir de: - contasReceber
+
+Por fim, o sistema deve permitir DELETAR uma conta caso seja necessário. A requisição deve seguir o seguinte padrão.
+
+Endpoint: /contasReceber/{id}
+Verbo HTTP: DELETE
+
+Resposta Status 204
+
