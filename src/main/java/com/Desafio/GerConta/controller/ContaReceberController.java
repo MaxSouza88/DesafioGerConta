@@ -44,10 +44,6 @@ public class ContaReceberController {
         return ResponseEntity.ok(contasReceberService.statusConta(status));
     }
 
-//    @GetMapping(path = "/LocalDateTime/{dataDeVencimento}")
-//    public ResponseEntity<List<ContasReceberModel>> findByDataVencimento(@PathVariable LocalDateTime dataDeVencimento){
-//        return ResponseEntity.ok(contasReceberService.buscaDataVencimento(dataDeVencimento));
-//    }
 
     @PostMapping
     public ResponseEntity<ContasReceberModel> cadastrarConta(@RequestBody ContasReceberModel contasReceberModel){

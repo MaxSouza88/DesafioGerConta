@@ -78,7 +78,7 @@ public class ContasReceberService {
                     contaRequest.setTipoPagamento(RecebimentoAlugueis.EM_DIA);
                 }
 
-                BigDecimal result = factory.recebimentoAlugueis(contaRequest).calcularRecebimento(contaRequest.getValorRecebido());
+                BigDecimal result = factory.recebimentoAlugueis(contaRequest.getValorRecebido());
                 contaRequest.getValorRecebido(result);
 
             }

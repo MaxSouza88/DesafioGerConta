@@ -5,7 +5,7 @@ import com.Desafio.GerConta.model.enums.RecebimentoAlugueis;
 
 public class RecebimentoFactory {
 
-    public RecebimentoCalculo recebimentoAlugueis (ContasReceberModel contasReceberModel){
+    public ContasReceberModel recebimentoAlugueis (ContasReceberModel contasReceberModel){
         if(recebimentoAlugueis == recebimentoAlugueis.EM_ATRASO){
             return new RecebimentoAtraso();
         } else if (recebimentoAlugueis == recebimentoAlugueis.ADIANTADO) {

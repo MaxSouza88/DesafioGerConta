@@ -1,6 +1,5 @@
 package com.Desafio.GerConta.controller;
 
-import com.Desafio.GerConta.model.EnderecoModel;
 import com.Desafio.GerConta.model.EstadoModel;
 import com.Desafio.GerConta.service.EstadoService;
 import org.springframework.beans.factory.annotation.Autowired;
