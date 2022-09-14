@@ -15,7 +15,7 @@ public interface ContasReceberRepository extends JpaRepository<ContasReceberMode
 
     List<ContasReceberModel> findBytipoRecebimento(TipoRecebimento tipoRecebimento);
 
-    List<ContasReceberModel> findByDataVencimento(LocalDateTime dataDeRecebimento);
+   // List<ContasReceberModel> findByDataVencimento(LocalDateTime dataDeRecebimento);
 
     List<ContasReceberModel> findByStatus (StatusEnum status);
 

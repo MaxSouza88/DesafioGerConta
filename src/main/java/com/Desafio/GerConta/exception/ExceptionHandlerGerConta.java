@@ -30,6 +30,15 @@ public class ExceptionHandlerGerConta extends ResponseEntityExceptionHandler {
 
     }
 
+
+    protected ResponseEntity<Object> handleHttpMessageNotReadable(IllegalArgumentException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+        String mensagemUser = messageSource.getMessage("mensagem.invalida",null,null);
+        String mensagemDesenvolvedor = ex.getCause().toString();
+
+        return handleExceptionInternal(ex,new MensagemErro(mensagemUser,mensagemDesenvolvedor),headers,HttpStatus.BAD_REQUEST,request);
+
+    }
+
     @Getter
     @Setter
     @AllArgsConstructor

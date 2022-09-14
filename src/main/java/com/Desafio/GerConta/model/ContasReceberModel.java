@@ -2,7 +2,6 @@ package com.Desafio.GerConta.model;
 
 import com.Desafio.GerConta.model.enums.RecebimentoAlugueis;
 import com.Desafio.GerConta.model.enums.StatusEnum;
-import com.Desafio.GerConta.model.enums.TipoEnum;
 import com.Desafio.GerConta.model.enums.TipoRecebimento;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,6 +26,9 @@ public class ContasReceberModel implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+//    @Column(name = "statusConta", length = 100, nullable = false)
+//    private String statusconta;
+
     @Column(name = "recebimento", length = 100, nullable = false)
     private String recebimento;
 
@@ -43,7 +45,7 @@ public class ContasReceberModel implements Serializable {
     private LocalDateTime dataDeRecebimento;
 
     @Enumerated(value = EnumType.STRING)
-    private RecebimentoAlugueis receber;
+    private RecebimentoAlugueis tipoPagamento;
 
     @Enumerated(value = EnumType.STRING)
     private StatusEnum status;

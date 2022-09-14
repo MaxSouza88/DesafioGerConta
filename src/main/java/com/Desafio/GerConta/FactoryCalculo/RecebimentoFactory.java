@@ -1,10 +1,11 @@
 package com.Desafio.GerConta.FactoryCalculo;
 
+import com.Desafio.GerConta.model.ContasReceberModel;
 import com.Desafio.GerConta.model.enums.RecebimentoAlugueis;
 
 public class RecebimentoFactory {
 
-    public static RecebimentoCalculo recebimentoAlugueis (RecebimentoAlugueis recebimentoAlugueis){
+    public RecebimentoCalculo recebimentoAlugueis (ContasReceberModel contasReceberModel){
         if(recebimentoAlugueis == recebimentoAlugueis.EM_ATRASO){
             return new RecebimentoAtraso();
         } else if (recebimentoAlugueis == recebimentoAlugueis.ADIANTADO) {
