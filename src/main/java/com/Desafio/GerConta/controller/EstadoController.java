@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/estados")
+@RequestMapping(path = "/estados")
 public class EstadoController {
 
     @Autowired

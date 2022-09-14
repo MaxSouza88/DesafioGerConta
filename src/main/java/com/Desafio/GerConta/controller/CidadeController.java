@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/cidades")
+@RequestMapping(path = "/cidades")
 public class CidadeController {
 
     @Autowired
