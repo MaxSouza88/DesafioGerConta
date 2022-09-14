@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,6 +45,11 @@ public class ContaReceberController {
         return ResponseEntity.ok(contasReceberService.statusConta(status));
     }
 
+    @GetMapping(path = "/{dataDeVencimento}")
+    public ResponseEntity<List<ContasReceberModel>> buscaDataDeVencimento(@PathVariable LocalDateTime dataDeVencimento){
+        return ResponseEntity.ok(contasReceberService.findByDataVencimento(dataDeVencimento));
+    }
+
     @PostMapping
     public ResponseEntity<ContasReceberModel> cadastrarConta(@RequestBody ContasReceberModel contasReceberModel){
         ContasReceberModel contasReceberModel1 = contasReceberService.cadastraContaReceber(contasReceberModel);
@@ -60,6 +66,7 @@ public class ContaReceberController {
 
     @DeleteMapping(path = "/{id}")
     public void deletaConta(@PathVariable Long id){
+
         contasReceberService.deletaContaReceber(id);
     }
 

@@ -43,9 +43,9 @@ public class UsuarioModel implements Serializable {
     @NotBlank(message = "CPF não informado ")
     private String cpf;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
-    private List<EnderecoModel> enderecos = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "endereco_id", referencedColumnName = "id")
+    private EnderecoModel endereco;
 
     @JsonIgnore
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)

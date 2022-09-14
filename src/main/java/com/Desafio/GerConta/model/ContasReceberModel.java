@@ -1,5 +1,6 @@
 package com.Desafio.GerConta.model;
 
+import com.Desafio.GerConta.model.enums.RecebimentoAlugueis;
 import com.Desafio.GerConta.model.enums.StatusEnum;
 import com.Desafio.GerConta.model.enums.TipoEnum;
 import com.Desafio.GerConta.model.enums.TipoRecebimento;
@@ -40,6 +41,9 @@ public class ContasReceberModel implements Serializable {
 
     @Column(name = "data_recebimento")
     private LocalDateTime dataDeRecebimento;
+
+    @Enumerated(value = EnumType.STRING)
+    private RecebimentoAlugueis receber;
 
     @Enumerated(value = EnumType.STRING)
     private StatusEnum status;

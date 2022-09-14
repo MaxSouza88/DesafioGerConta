@@ -1,11 +1,14 @@
 package com.Desafio.GerConta.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -23,6 +26,10 @@ public class CidadeModel implements Serializable {
     private String nomeCidade;
 
     @ManyToOne
-    @JoinColumn(name = "nome_estado",referencedColumnName = "id")
+    @JoinColumn(name = "estado_id",referencedColumnName = "id")
     private EstadoModel estado ;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "cidade",cascade = CascadeType.ALL)
+    private List<EnderecoModel> endereco = new ArrayList<>();
 }

@@ -1,11 +1,8 @@
 package com.Desafio.GerConta.service;
 
-import com.Desafio.GerConta.model.ContasAPagarModel;
 import com.Desafio.GerConta.model.ContasReceberModel;
 import com.Desafio.GerConta.model.RespostaRecebimentoModel;
-import com.Desafio.GerConta.model.RespostaSelecionadaModel;
 import com.Desafio.GerConta.model.enums.StatusEnum;
-import com.Desafio.GerConta.model.enums.TipoEnum;
 import com.Desafio.GerConta.model.enums.TipoRecebimento;
 import com.Desafio.GerConta.repository.ContasReceberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +38,10 @@ public class ContasReceberService {
         return contasReceberRepository.findByStatus(status);
     }
 
+    public List<ContasReceberModel> findByDataVencimento (LocalDateTime dataDeRecebimento){
+        return contasReceberRepository.findByDataVencimento(dataDeRecebimento);
+    }
+
     public ContasReceberModel cadastraContaReceber(ContasReceberModel contasReceberModel){
         contasReceberModel.setDataDeRecebimento(null);
 
@@ -58,7 +59,7 @@ public class ContasReceberService {
         if(contasReceberModel.getStatus() == StatusEnum.PAGO){
             alteraContaReceber.setDataDeRecebimento(LocalDateTime.now(ZoneId.of("UTC-03:00")));
             alteraContaReceber.setStatus(StatusEnum.PAGO);
-        }return contasReceberRepository.save(alteraContaReceber);
+        }return contasReceberRepository.save(contasReceberModel);
     }
 
     public void deletaContaReceber(Long id){
