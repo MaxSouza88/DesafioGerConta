@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Data
 @NoArgsConstructor
@@ -12,7 +13,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "endereco")
 
-public class EnderecoModel {
+public class EnderecoModel implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
