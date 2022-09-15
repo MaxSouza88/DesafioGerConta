@@ -1,7 +1,7 @@
 package com.Desafio.GerConta.repository;
 
 import com.Desafio.GerConta.model.ContasReceberModel;
-import com.Desafio.GerConta.model.enums.StatusEnum;
+import com.Desafio.GerConta.model.enums.StatusPagamento;
 import com.Desafio.GerConta.model.enums.TipoRecebimento;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -16,6 +16,6 @@ public interface ContasReceberRepository extends JpaRepository<ContasReceberMode
 
    List<ContasReceberModel> findBydataDeVencimento(LocalDateTime dataDeVencimento);
 
-    List<ContasReceberModel> findByStatus (StatusEnum status);
+    List<ContasReceberModel> findByStatus (StatusPagamento status);
 
 }

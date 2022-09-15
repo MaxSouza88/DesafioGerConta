@@ -1,7 +1,7 @@
 package com.Desafio.GerConta.controller;
 import com.Desafio.GerConta.model.ContasAPagarModel;
 import com.Desafio.GerConta.model.RespostaSelecionadaModel;
-import com.Desafio.GerConta.model.enums.StatusEnum;
+import com.Desafio.GerConta.model.enums.StatusPagamento;
 import com.Desafio.GerConta.model.enums.TipoEnum;
 import com.Desafio.GerConta.repository.ContasPagarRepository;
 import com.Desafio.GerConta.service.ContasPagarService;
@@ -10,7 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,7 +38,7 @@ public class ContasPagarController {
     }
 
     @GetMapping(path = "/statusEnum/{status}")
-    public ResponseEntity<List<ContasAPagarModel>> findBYStatusDaConta(@PathVariable StatusEnum status){
+    public ResponseEntity<List<ContasAPagarModel>> findBYStatusDaConta(@PathVariable StatusPagamento status){
         return ResponseEntity.ok(contasPagarService.statusConta(status));
     }
 

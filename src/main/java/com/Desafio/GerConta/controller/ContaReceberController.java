@@ -1,9 +1,8 @@
 package com.Desafio.GerConta.controller;
 
-import com.Desafio.GerConta.model.ContasAPagarModel;
 import com.Desafio.GerConta.model.ContasReceberModel;
 import com.Desafio.GerConta.model.RespostaRecebimentoModel;
-import com.Desafio.GerConta.model.enums.StatusEnum;
+import com.Desafio.GerConta.model.enums.StatusPagamento;
 import com.Desafio.GerConta.model.enums.TipoRecebimento;
 import com.Desafio.GerConta.repository.ContasReceberRepository;
 import com.Desafio.GerConta.service.ContasReceberService;
@@ -42,7 +41,7 @@ public class ContaReceberController {
     }
 
     @GetMapping(path = "/statusEnum/{status}")
-    public ResponseEntity<List<ContasReceberModel>> findBYStatusDaConta(@PathVariable StatusEnum status){
+    public ResponseEntity<List<ContasReceberModel>> findBYStatusDaConta(@PathVariable StatusPagamento status){
         return ResponseEntity.ok(contasReceberService.statusConta(status));
     }
 

@@ -6,5 +6,5 @@ import java.math.BigDecimal;
 
 public interface RecebimentoCalculo {
 
-    public BigDecimal calcularRecebimento (ContasReceberModel contasReceberModel);
+    BigDecimal calcularRecebimento (ContasReceberModel contasReceberModel);
 }

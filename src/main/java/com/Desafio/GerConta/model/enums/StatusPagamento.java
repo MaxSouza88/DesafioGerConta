@@ -1,6 +1,6 @@
 package com.Desafio.GerConta.model.enums;
 
-public enum StatusEnum {
+public enum StatusPagamento {
 
     PAGO,
     AGUARDANDO,

@@ -1,10 +1,10 @@
 package com.Desafio.GerConta.service;
 
-import com.Desafio.GerConta.FactoryCalculo.RecebimentoFactory;
+import com.Desafio.GerConta.FactoryCalculo.RecebimentoCalculoFactory;
 import com.Desafio.GerConta.model.ContasReceberModel;
 import com.Desafio.GerConta.model.RespostaRecebimentoModel;
-import com.Desafio.GerConta.model.enums.RecebimentoAlugueis;
-import com.Desafio.GerConta.model.enums.StatusEnum;
+import com.Desafio.GerConta.model.enums.StatusPagamento;
+import com.Desafio.GerConta.model.enums.TipoPagamento;
 import com.Desafio.GerConta.model.enums.TipoRecebimento;
 import com.Desafio.GerConta.repository.ContasReceberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ public class ContasReceberService {
     private ContasReceberRepository contasReceberRepository;
 
     @Autowired
-    private RecebimentoFactory recebimentoFactory;
+    private RecebimentoCalculoFactory recebimentoCalculoFactory;
 
     public List<RespostaRecebimentoModel> buscarTudo(){
         List<ContasReceberModel> buscarNome = contasReceberRepository.findAll();
@@ -40,7 +40,7 @@ public class ContasReceberService {
         return contasReceberRepository.findBytipoRecebimento(tipoRecebimento);
     }
 
-    public List<ContasReceberModel> statusConta (StatusEnum status){
+    public List<ContasReceberModel> statusConta (StatusPagamento status){
         return contasReceberRepository.findByStatus(status);
     }
 
@@ -52,9 +52,9 @@ public class ContasReceberService {
         contasReceberModel.setDataDeRecebimento(null);
         boolean recebNoPrazo = LocalDate.now().isBefore(contasReceberModel.getDataDeVencimento()) || LocalDate.now().equals(contasReceberModel.getDataDeVencimento());
         if(!recebNoPrazo){
-            contasReceberModel.setStatus(StatusEnum.VENCIDA);
+            contasReceberModel.setStatus(StatusPagamento.VENCIDA);
         }else {
-            contasReceberModel.setStatus(StatusEnum.AGUARDANDO);
+            contasReceberModel.setStatus(StatusPagamento.AGUARDANDO);
         }
         return contasReceberRepository.save(contasReceberModel);
     }
@@ -66,22 +66,22 @@ public class ContasReceberService {
 
         var contaDB = optContaDB.get();
 
-        if(contaDB.getStatus() == StatusEnum.PAGO)throw new IllegalArgumentException("A conta com Id " +contaDB.getId() + " ja foi paga");
+        if(contaDB.getStatus() == StatusPagamento.PAGO) throw new IllegalArgumentException("A conta com Id " +contaDB.getId() + " ja foi paga");
 
-        if(contaRequest.getStatus() == StatusEnum.PAGO){
+        if(contaRequest.getStatus() == StatusPagamento.PAGO){
             contaDB.setDataDeRecebimento(LocalDateTime.now(ZoneId.of("UTC-03:00")));
-            contaDB.setStatus(StatusEnum.PAGO);
+            contaDB.setStatus(StatusPagamento.PAGO);
 
             if(contaDB.getTipoRecebimento().equals(TipoRecebimento.ALUGUEIS)){
                 if(contaDB.getDataDeVencimento().isBefore(LocalDate.now())){
-                    contaDB.setTipoPagamento(RecebimentoAlugueis.EM_ATRASO);
+                    contaDB.setTipoPagamento(TipoPagamento.EM_ATRASO);
                 }else if(contaDB.getDataDeVencimento().isAfter(LocalDate.now())){
-                    contaDB.setTipoPagamento(RecebimentoAlugueis.ADIANTADO);
+                    contaDB.setTipoPagamento(TipoPagamento.ADIANTADO);
                 }else {
-                    contaDB.setTipoPagamento(RecebimentoAlugueis.EM_DIA);
+                    contaDB.setTipoPagamento(TipoPagamento.EM_DIA);
                 }
 
-                var calculo = recebimentoFactory.construir(contaDB);
+                var calculo = contaDB.getTipoPagamento().getCalculo();
                 BigDecimal result = calculo.calcularRecebimento(contaDB);;
                 contaDB.setValorRecebido(result);
 
