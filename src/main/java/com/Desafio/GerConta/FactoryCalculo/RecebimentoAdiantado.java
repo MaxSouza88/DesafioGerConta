@@ -9,7 +9,7 @@ public class RecebimentoAdiantado implements RecebimentoCalculo{
     @Override
     public BigDecimal calcularRecebimento(ContasReceberModel contasReceberModel) {
         BigDecimal antecipado = contasReceberModel.getValorRecebido().multiply(new BigDecimal(String.valueOf(0.05)));
-        return antecipado.subtract(contasReceberModel.getValorRecebido());
+        return contasReceberModel.getValorRecebido().subtract(antecipado);
 
     }
 }
