@@ -2,7 +2,7 @@ package com.Desafio.GerConta.service;
 
 import com.Desafio.GerConta.model.ContasAPagarModel;
 import com.Desafio.GerConta.model.RespostaSelecionadaModel;
-import com.Desafio.GerConta.model.enums.StatusEnum;
+import com.Desafio.GerConta.model.enums.StatusPagamento;
 import com.Desafio.GerConta.model.enums.TipoEnum;
 import com.Desafio.GerConta.repository.ContasPagarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +33,7 @@ public class ContasPagarService {
         return contasPagarRepository.findByTipoConta(tipoEnum);
     }
 
-    public List<ContasAPagarModel> statusConta (StatusEnum status){
+    public List<ContasAPagarModel> statusConta (StatusPagamento status){
         return contasPagarRepository.findByStatus(status);
     }
 
@@ -42,18 +42,18 @@ public class ContasPagarService {
 
         Boolean pagNoPrazo = LocalDate.now().isBefore(contasAPagarModel.getDataDeVencimento()) || LocalDate.now().equals(contasAPagarModel.getDataDeVencimento());
         if(Boolean.FALSE.equals(pagNoPrazo)){
-            contasAPagarModel.setStatus(StatusEnum.VENCIDA);
+            contasAPagarModel.setStatus(StatusPagamento.VENCIDA);
         }else {
-            contasAPagarModel.setStatus(StatusEnum.AGUARDANDO);
+            contasAPagarModel.setStatus(StatusPagamento.AGUARDANDO);
         }
         return contasPagarRepository.save(contasAPagarModel);
     }
 
     public ContasAPagarModel alteraConta(ContasAPagarModel contasAPagarModel){
         ContasAPagarModel alteraConta = contasPagarRepository.findById(contasAPagarModel.getId()).get();
-        if(contasAPagarModel.getStatus() == StatusEnum.PAGO){
+        if(contasAPagarModel.getStatus() == StatusPagamento.PAGO){
             alteraConta.setDataDePagamento(LocalDateTime.now(ZoneId.of("UTC-03:00")));
-            alteraConta.setStatus(StatusEnum.PAGO);
+            alteraConta.setStatus(StatusPagamento.PAGO);
         }return contasPagarRepository.save(alteraConta);
     }
 

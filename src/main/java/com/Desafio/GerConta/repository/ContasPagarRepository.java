@@ -1,7 +1,7 @@
 package com.Desafio.GerConta.repository;
 
 import com.Desafio.GerConta.model.ContasAPagarModel;
-import com.Desafio.GerConta.model.enums.StatusEnum;
+import com.Desafio.GerConta.model.enums.StatusPagamento;
 import com.Desafio.GerConta.model.enums.TipoEnum;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -13,6 +13,6 @@ public interface ContasPagarRepository extends JpaRepository<ContasAPagarModel, 
 
    List<ContasAPagarModel> findByTipoConta(TipoEnum tipoConta);
 
-   List<ContasAPagarModel> findByStatus(StatusEnum status);
+   List<ContasAPagarModel> findByStatus(StatusPagamento status);
 
 }

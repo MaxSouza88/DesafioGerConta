@@ -1,7 +1,7 @@
 package com.Desafio.GerConta.model;
 
-import com.Desafio.GerConta.model.enums.RecebimentoAlugueis;
-import com.Desafio.GerConta.model.enums.StatusEnum;
+import com.Desafio.GerConta.model.enums.TipoPagamento;
+import com.Desafio.GerConta.model.enums.StatusPagamento;
 import com.Desafio.GerConta.model.enums.TipoRecebimento;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -45,10 +45,10 @@ public class ContasReceberModel implements Serializable {
     private LocalDateTime dataDeRecebimento;
 
     @Enumerated(value = EnumType.STRING)
-    private RecebimentoAlugueis tipoPagamento;
+    private TipoPagamento tipoPagamento;
 
     @Enumerated(value = EnumType.STRING)
-    private StatusEnum status;
+    private StatusPagamento status;
 
     @ManyToOne
     @JoinColumn(name = "usuario_id",referencedColumnName = "id")

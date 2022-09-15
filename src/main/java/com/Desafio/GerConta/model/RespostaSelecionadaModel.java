@@ -1,5 +1,5 @@
 package com.Desafio.GerConta.model;
-import com.Desafio.GerConta.model.enums.StatusEnum;
+import com.Desafio.GerConta.model.enums.StatusPagamento;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,6 +14,6 @@ public class RespostaSelecionadaModel {
     private Long id;
     private String nome;
     private double valor;
-    private StatusEnum status;
+    private StatusPagamento status;
 
 }

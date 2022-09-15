@@ -1,6 +1,6 @@
 package com.Desafio.GerConta.model;
 
-import com.Desafio.GerConta.model.enums.StatusEnum;
+import com.Desafio.GerConta.model.enums.StatusPagamento;
 import com.Desafio.GerConta.model.enums.TipoEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -41,6 +41,6 @@ public class ContasAPagarModel implements Serializable {
     private LocalDateTime dataDePagamento;
 
     @Enumerated(value = EnumType.STRING)
-    private StatusEnum status;
+    private StatusPagamento status;
 
 }
