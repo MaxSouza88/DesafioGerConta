@@ -2,18 +2,20 @@ package com.Desafio.GerConta.FactoryCalculo;
 
 import com.Desafio.GerConta.model.ContasReceberModel;
 import com.Desafio.GerConta.model.enums.RecebimentoAlugueis;
+import org.springframework.stereotype.Component;
 
+@Component
 public class RecebimentoFactory {
 
-    public ContasReceberModel recebimentoAlugueis (ContasReceberModel contasReceberModel){
-        if(recebimentoAlugueis == recebimentoAlugueis.EM_ATRASO){
+    public RecebimentoCalculo construir (ContasReceberModel contasReceberModel){
+        if(contasReceberModel.getTipoPagamento() == RecebimentoAlugueis.EM_ATRASO){
             return new RecebimentoAtraso();
-        } else if (recebimentoAlugueis == recebimentoAlugueis.ADIANTADO) {
+        } else if (contasReceberModel.getTipoPagamento() == RecebimentoAlugueis.ADIANTADO) {
             return new RecebimentoAdiantado();
-        } else if (recebimentoAlugueis == recebimentoAlugueis.EM_DIA) {
+        } else if (contasReceberModel.getTipoPagamento() == RecebimentoAlugueis.EM_DIA) {
             return new RecebimentoEmDia();
         }else {
-            return null;
+            throw new IllegalArgumentException("Nao foi possivel determinar ");
         }
     }
 }

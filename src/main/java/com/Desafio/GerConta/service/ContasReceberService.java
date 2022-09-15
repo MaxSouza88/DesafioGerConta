@@ -24,6 +24,9 @@ public class ContasReceberService {
     @Autowired
     private ContasReceberRepository contasReceberRepository;
 
+    @Autowired
+    private RecebimentoFactory recebimentoFactory;
+
     public List<RespostaRecebimentoModel> buscarTudo(){
         List<ContasReceberModel> buscarNome = contasReceberRepository.findAll();
         return buscarNome.stream().map(recebimento1 -> new RespostaRecebimentoModel(recebimento1.getId(), recebimento1.getRecebimento(), recebimento1.getValorRecebido(), recebimento1.getStatus())).collect(Collectors.toList());
@@ -56,7 +59,7 @@ public class ContasReceberService {
         return contasReceberRepository.save(contasReceberModel);
     }
 
-    public ContasReceberModel alteraContaReceber(ContasReceberModel contaRequest, RecebimentoFactory factory){
+    public ContasReceberModel alteraContaReceber(ContasReceberModel contaRequest){
 
         Optional<ContasReceberModel> optContaDB = contasReceberRepository.findById(contaRequest.getId());
         if(optContaDB.isEmpty())throw new IllegalArgumentException("O Id Informado nao esta no Banco de Dados");
@@ -69,17 +72,18 @@ public class ContasReceberService {
             contaDB.setDataDeRecebimento(LocalDateTime.now(ZoneId.of("UTC-03:00")));
             contaDB.setStatus(StatusEnum.PAGO);
 
-            if(contaRequest.getTipoRecebimento().equals(TipoRecebimento.ALUGUEIS)){
-                if(contaRequest.getDataDeVencimento().isBefore(LocalDate.now())){
-                    contaRequest.setTipoPagamento(RecebimentoAlugueis.EM_ATRASO);
-                }else if(contaRequest.getDataDeVencimento().isAfter(LocalDate.now())){
-                    contaRequest.setTipoPagamento(RecebimentoAlugueis.ADIANTADO);
-            }else {
-                    contaRequest.setTipoPagamento(RecebimentoAlugueis.EM_DIA);
+            if(contaDB.getTipoRecebimento().equals(TipoRecebimento.ALUGUEIS)){
+                if(contaDB.getDataDeVencimento().isBefore(LocalDate.now())){
+                    contaDB.setTipoPagamento(RecebimentoAlugueis.EM_ATRASO);
+                }else if(contaDB.getDataDeVencimento().isAfter(LocalDate.now())){
+                    contaDB.setTipoPagamento(RecebimentoAlugueis.ADIANTADO);
+                }else {
+                    contaDB.setTipoPagamento(RecebimentoAlugueis.EM_DIA);
                 }
 
-                BigDecimal result = factory.recebimentoAlugueis(contaRequest.getValorRecebido());
-                contaRequest.getValorRecebido(result);
+                var calculo = recebimentoFactory.construir(contaDB);
+                BigDecimal result = calculo.calcularRecebimento(contaDB);;
+                contaDB.setValorRecebido(result);
 
             }
 
@@ -92,7 +96,5 @@ public class ContasReceberService {
     public void deletaContaReceber(Long id){
         contasReceberRepository.deleteById(id);
     }
-
-
 
 }
