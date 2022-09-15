@@ -1,5 +1,6 @@
 package com.Desafio.GerConta.controller;
 
+import com.Desafio.GerConta.model.ContasAPagarModel;
 import com.Desafio.GerConta.model.ContasReceberModel;
 import com.Desafio.GerConta.model.RespostaRecebimentoModel;
 import com.Desafio.GerConta.model.enums.StatusEnum;
@@ -11,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,6 +44,11 @@ public class ContaReceberController {
     @GetMapping(path = "/statusEnum/{status}")
     public ResponseEntity<List<ContasReceberModel>> findBYStatusDaConta(@PathVariable StatusEnum status){
         return ResponseEntity.ok(contasReceberService.statusConta(status));
+    }
+
+    @GetMapping(path = "/{dataDeRecebimento}")
+    public ResponseEntity<List<ContasReceberModel>> buscaData(@PathVariable LocalDateTime dataDeVencimento){
+        return ResponseEntity.ok(contasReceberService.buscaDataVencimento(dataDeVencimento));
     }
 
 

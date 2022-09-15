@@ -29,7 +29,7 @@ public class ContasReceberService {
 
     public List<RespostaRecebimentoModel> buscarTudo(){
         List<ContasReceberModel> buscarNome = contasReceberRepository.findAll();
-        return buscarNome.stream().map(recebimento1 -> new RespostaRecebimentoModel(recebimento1.getId(), recebimento1.getRecebimento(), recebimento1.getValorRecebido(), recebimento1.getStatus())).collect(Collectors.toList());
+        return buscarNome.stream().map(recebimento1 -> new RespostaRecebimentoModel(recebimento1.getId(), recebimento1.getRecebimento(), recebimento1.getValorRecebido(), recebimento1.getTipoRecebimento(),recebimento1.getDataDeVencimento(),recebimento1.getDataDeRecebimento(),recebimento1.getStatus(),recebimento1.getId())).collect(Collectors.toList());
     }
 
     public Optional<ContasReceberModel> buscaPorId(Long id){
@@ -44,9 +44,9 @@ public class ContasReceberService {
         return contasReceberRepository.findByStatus(status);
     }
 
-//    public List<ContasReceberModel> buscaDataVencimento (LocalDateTime dataDeRecebimento){
-//        return contasReceberRepository.findByDataVencimento(dataDeRecebimento);
-//    }
+    public List<ContasReceberModel> buscaDataVencimento (LocalDateTime dataDeVencimento){
+        return contasReceberRepository.findBydataDeVencimento(dataDeVencimento);
+    }
 
     public ContasReceberModel cadastraContaReceber(ContasReceberModel contasReceberModel){
         contasReceberModel.setDataDeRecebimento(null);
